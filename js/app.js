@@ -56,8 +56,8 @@ window.onload = function () {
 
           this.children[0].classList.add('show'); // При соответствующем выборе отобразится крестик
 
-        selected_sign = zero; // При клике по выбранной ячейке значение переменной с выбранным знаком меняется на
-                              // противоположное
+          selected_sign = zero; // При клике по выбранной ячейке значение переменной с выбранным знаком меняется на
+                                // противоположное
     }
       
       else if (selected_sign === zero && this.children[0].classList.contains('show') === false && this.children[1].classList.contains('show') === false) {

@@ -10,7 +10,7 @@ window.onload = function() {
 
     let zero = 'o';  // zero sign
 
-    let selected_sign; // stores the selected character
+    let selected_sign; // stores the selected character 
 
 
     function showSubstrate() {  // function to show background to avoid unwanted clicks

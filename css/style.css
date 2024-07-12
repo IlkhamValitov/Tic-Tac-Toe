@@ -1,4 +1,4 @@
-/*Стили игры*/
+/* game styles */
 
 p {
   margin-top: 20px;
@@ -34,7 +34,7 @@ p {
   display: none;
 }
 
-.field .level .cell p.show { /* При клике на ячейку отобразится выбранный знак */
+.field .level .cell p.show { /* when you click on a cell, the selected symbol will be displayed */
   display: block;
   font-size: 6em;
   margin: 0;
@@ -44,7 +44,7 @@ p {
   color: red;
 }
 
-/*Стили для блока выбора кнопки*/
+/* styles for the button selection block */
 
 .choosing .buttons_title {
   margin-bottom: 16px;
@@ -54,7 +54,7 @@ p {
   text-align: center;
 }
 
-/* Стили для подложки */
+/* background styles */
 
 .substrate {
   display: none;

@@ -1,114 +1,81 @@
 <!doctype html>
 <html class="" lang="">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>tic-tac-toe</title>
-  <link rel="stylesheet" href="css/style.css">
-  <meta name="description" content="">
-
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-  <meta property="og:image:alt" content="">
-
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="icon.png">
-
-  <link rel="manifest" href="site.webmanifest">
-  <meta name="theme-color" content="#fafafa">
-</head>
-
-<body>
-
-  <div class="substrate"></div>
-
-  <p>tic-tac-toe</p>
-
-<!--Поле для ячеек-->
-  <div class="field">
-
-<!--    Уровни содержащие ячейки-->
-    <div class="level">
-
-<!--      Ячейки-->
-      <div class="cell">
-        <p>+</p>
-        <p>o</p>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>tic-tac-toe</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta property="og:image:alt" content="">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#fafafa">
+  </head>
+  <body>
+    <div class="substrate"></div>
+    <p>tic-tac-toe</p>
+<!-- cell box -->
+    <div class="field">
+<!-- levels containing cells -->
+      <div class="level">
+<!-- cells -->
+        <div class="cell">
+          <p>+</p>
+          <p>o</p>
+        </div>
+        <div class="cell">
+          <p>+</p>
+          <p>o</p>
+        </div>
+        <div class="cell">
+          <p>+</p>
+          <p>o</p>
+        </div>
       </div>
-
-      <div class="cell">
-        <p>+</p>
-        <p>o</p>
+      <div class="level">
+        <div class="cell">
+          <p>+</p>
+          <p>o</p>
+        </div>
+        <div class="cell">
+          <p>+</p>
+          <p>o</p>
+        </div>
+        <div class="cell">
+          <p>+</p>
+          <p>o</p>
+        </div>
       </div>
-
-      <div class="cell">
-        <p>+</p>
-        <p>o</p>
+      <div class="level">
+        <div class="cell">
+          <p>+</p>
+          <p>o</p>
+        </div>
+        <div class="cell">
+          <p>+</p>
+          <p>o</p>
+        </div>
+        <div class="cell">
+          <p>+</p>
+          <p>o</p>
+        </div>
       </div>
-
     </div>
-
-    <div class="level">
-
-      <div class="cell">
-        <p>+</p>
-        <p>o</p>
+<!-- block for selecting a sign -->
+    <div class="choosing">
+      <p class="buttons_title">Сделайте выбор:</p>
+      <div class="button_block">
+<!-- buttons to select a character -->
+        <button class="button">+</button>
+        <button class="button">o</button>
       </div>
-
-      <div class="cell">
-        <p>+</p>
-        <p>o</p>
-      </div>
-
-      <div class="cell">
-        <p>+</p>
-        <p>o</p>
-      </div>
-
     </div>
-
-    <div class="level">
-
-      <div class="cell">
-        <p>+</p>
-        <p>o</p>
-      </div>
-
-      <div class="cell">
-        <p>+</p>
-        <p>o</p>
-      </div>
-
-      <div class="cell">
-        <p>+</p>
-        <p>o</p>
-      </div>
-
-    </div>
-
-  </div>
-
-<!--Блок для выбора знака-->
-  <div class="choosing">
-
-    <p class="buttons_title">Сделайте выбор:</p>
-
-    <div class="button_block">
-
-<!--      Кнопки для выбора знака-->
-      <button class="button">+</button>
-      <button class="button">o</button>
-
-    </div>
-
-  </div>
-
-  <script src="js/app.js"></script>
-
-</body>
-
+    <script src="js/app.js"></script>
+  </body>
 </html>

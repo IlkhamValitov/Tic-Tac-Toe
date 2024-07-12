@@ -1,222 +1,310 @@
-window.onload = function () {
+window.onload = function() {
 
-  //Основные переменные
+    // main variables
 
-  let field = document.querySelector('.field'); // Поле
+    let cell = document.querySelectorAll('.cell'); // cell
 
-  let level = document.querySelectorAll('.level'); // Уровень
+    let substrate = document.querySelector('.substrate'); // anti-click backing
 
-  let cell = document.querySelectorAll('.cell'); // Ячейка
+    let cross = '+'; // cross sign
 
-  let cell_p = document.querySelectorAll('.cell p'); // Параграф внутри ячейки
+    let zero = 'o';  // zero sign
 
-  let cross = '+';
-
-  let zero = 'o';
+    let selected_sign; // stores the selected character
 
 
-// Блок выбора начального знака
+    function showSubstrate() {  // function to show background to avoid unwanted clicks
 
-  let sign_buttons = document.querySelectorAll('.button'); // Кнопки для выбора знаков
-                                                                                        
-  let selected_sign; // Хранит выбранный знак
+        substrate.classList.add('show_substrate');
+                    
+        setTimeout(askQuestion, 2000);
 
-  let o = 0; // Переменная счетчика цикла
-
-  for (; o < sign_buttons.length; o++) {
-
-    sign_buttons[o].onclick = function () { // При клике на кнопку выбранный знак сохраняется
-                                            // в предварительно объявленной переменной
-      if (this.innerHTML === cross) {
-
-        selected_sign = cross; // Присвоится знак '+'
-
-      }
-
-      else {
-
-        selected_sign = zero; // Присвоится хранит знак 'o'
-
-      }
+        return;
 
     }
 
-  }
-  
+    
+    function askQuestion() { // asked after finishing the game
 
-  // Основной блок, который отвечает за отображение знаков в ячейках при клике и сопутствующие этому действия
+        if (confirm('Желаете сыграть еще?')) {
 
-  let i = 0; // Переменная счетчика цикла
+            clearData();
 
-  for (; i < cell.length; i++) {
+            return;
 
-    cell[i].onclick = function () { // Клик по ячейке отображает указанный знак
-
-      if (selected_sign === cross && this.children[0].classList.contains('show') === false && this.children[1].classList.contains('show') === false) {
-
-          this.children[0].classList.add('show'); // При соответствующем выборе отобразится крестик
-
-          selected_sign = zero; // При клике по выбранной ячейке значение переменной с выбранным знаком меняется на
-                                // противоположное
-    }
-      
-      else if (selected_sign === zero && this.children[0].classList.contains('show') === false && this.children[1].classList.contains('show') === false) {
-                                                                                                // При выборе нолика он будет
-                                                                                                // отображен в одной из ячеек,
-                                                                                                // а также предварительно
-                                                                                                // выполнится проверка на наличие
-                                                                                                // ранее добавленного знака в
-                                                                                                // ячейке
+        }
         
-        this.children[1].classList.add('show'); // При соответствующем выборе отобразится нолик
-
-        selected_sign = cross;
-
-      }
-
-      else {
-
-          if (this.children[0].classList.contains('show') === true || this.children[1].classList.contains('show') === true) {
-                                                                   // При повторном клике по непустой ячейке отобразится
-                                                                   // соответствующее объявление
-
-          alert('Поставьте знак в свободную ячейку');
-
-          }
-
         else {
 
-          alert('Выберите знак!'); // При попытке клика по одной из ячеек без предварительного выбора знака
-                                   // высветится соответствующее требование
-        }
+            clearData();
 
-      }
-
-      // ПРОВЕРКА НАЛИЧИЯ ТРЕХ ОДИНАКОВЫХ ЗНАКОВ В РЯД
-        
-      // Данный блок выполняется после вставки знака в ячейку
-
-      let y = 0; // Переменная счетчика цикла (горизонтальный перебор)
-
-      let sign_num = 0; // Переменная счетчика ячеек в ряду
-
-      let three_signs = ''; // Переменная для хранения трех знаков
-
-      let display_sign; // Переменная для распознавания отображаемого знака
-
-      for (; y <= cell.length; y++) { // Цикл для перебора ячеек по горизонтали
-      
-        if (sign_num === 3) { // Проверка достижения счетчиком предельного значения равного трем
-
-          if (three_signs === '+++' || three_signs === 'ooo') { // Проверка на наличие трех одинаковых знаков подряд
-                                                                
-              cell[y - 1].children[display_sign].classList.add('red'); // Выделение трех одинаковых знаков в ряд красным цветом
-
-              cell[y - 2].children[display_sign].classList.add('red');
-
-              cell[y - 3].children[display_sign].classList.add('red');
-            
-            alert(`Победил ${this.children[display_sign].innerHTML}`); // Объявление победившего знака
-
-          }
-
-          three_signs = ''; // Обнуление переменной, хранящей содержимое ячеек в ряду
-
-          sign_num = 0; // Обнуление счетчика ячеек в ряду
+            return;
 
         }
 
-        if (y != 9) {
-          
-          if (cell[y].children[0].classList.contains('show')) {
-
-            three_signs += cell[y].children[0].innerHTML;
-
-            display_sign = 0;
-
-          }
-
-          else if (cell[y].children[1].classList.contains('show')) {
-
-            three_signs += cell[y].children[1].innerHTML;
-
-            display_sign = 1;
-
-          }
-          
-        }
-        
-        sign_num++; // После вычисления ячейки значение счетчика увеличивается
-
-      }
+    }
 
 
-      let z = 0; // Переменная счетчика цикла (вериткальный перебор)
+    function clearData() { // function to clear data after one of the players wins
 
-      let second_sign_num = 0;
+        for(let cell_count = 0; cell_count < cell.length; cell_count++) {
 
-      let second_three_signs = '';
+            for(let sign_count = 0; sign_count < cell[0].children.length; sign_count++) {
 
-      let display_sign_1; // Переменная для распознавания отображаемого знака
+                cell[cell_count].children[sign_count].classList.remove('show');
 
-      for (; z < cell.length;) { // Цикл для перебора ячеек по вертикали
+                cell[cell_count].children[sign_count].classList.remove('red');
 
-          if (second_sign_num === 3) { // Проверка достижения счетчиком предельного значения равного трем
-  
-            if (second_three_signs === '+++' || second_three_signs === 'ooo') { // Проверка на наличие трех одинаковых знаков подряд
-                                                                  
-              cell[z + 5].children[display_sign_1].classList.add('red'); // Выделение трех одинаковых знаков в ряд красным цветом
-              
-              cell[z + 2].children[display_sign_1].classList.add('red');
-              
-              cell[z + (-1)].children[display_sign_1].classList.add('red');
-
-              alert(`Победил ${this.children[display_sign_1].innerHTML}`); // Объявление победившего знака
-              
             }
-  
-            second_three_signs = ''; // Обнуление переменной, хранящей содержимое ячеек в ряду
-  
-            second_sign_num = 0; // Обнуление счетчика ячеек в ряду
+            
+        }
 
-            if (z === 3) break; // По достижении счетчика цикла указанного значения цикл прерывается (ВЕРОЯТНО НУЖНО ПРЕРЫВАТЬ ПОСЛЕ ALERT)
+        selected_sign = '';
 
-          }
+        substrate.classList.remove('show_substrate');
+
+        return;
+
+    }
+
+
+    selectSign();
+
+    insertSign();
+
+
+    // selection of initial character
+
+    function selectSign() { 
+
+        let sign_buttons = document.querySelectorAll('.button'); // buttons for selecting characters
+
+        let o = 0; // loop counter variable
+
+        for (; o < sign_buttons.length; o++) {
+
+            sign_buttons[o].onclick = function () { // when you click on the button, the selected 
+                                                    // character is stored in a previously declared variable
+                if (this.innerHTML === cross) {
+
+                    selected_sign = cross; // a '+' sign will be assigned
+
+                }
+
+                else {
+
+                    selected_sign = zero; // assigned stores the sign 'o'
+
+                }
+
+            }
+
+        }
+
+    }
+
+
+    function insertSign() {
+        
+        let i = 0; // loop counter variable
+
+        for (; i < cell.length; i++) {
+
+            cell[i].onclick = function () { // clicking on a cell displays the specified sign
+               
+                if (selected_sign === cross && this.children[0].classList.contains('show') === false && this.children[1].classList.contains('show') === false) {
+
+                    this.children[0].classList.add('show'); // if selected, a cross will be displayed
+
+                    selected_sign = zero; // when you click on the selected cell, the value of the 
+                                          // variable with the selected sign changes to the opposite one
+
+                    checkSign();
+                    
+                }
+      
+                else if (selected_sign === zero && this.children[0].classList.contains('show') === false && this.children[1].classList.contains('show') === false) {
+                                                                                                // when you select a zero, it will be displayed
+                                                                                                // in one of the cells, and a check will 
+                                                                                                // also be made to check for the presence
+                                                                                                // of the previously added sign in the cell
+        
+                    this.children[1].classList.add('show'); // if selected, a zero will be displayed
+
+                    selected_sign = cross;
+
+                    checkSign();
+
+                }
+
+                else {
+
+                    if (this.children[0].classList.contains('show') === true || this.children[1].classList.contains('show') === true) {
+                                                                   // when you click on a non-empty cell again,
+                                                                   // the corresponding ad will be displayed
+
+                        alert('Поставьте знак в свободную ячейку');
+
+                    }
+
+                    else {
+
+                        alert('Выберите знак!'); // If you try to click on one of the cells
+                                                 // without first selecting a sign,
+                                                 // the corresponding requirement will be displayed
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+
+    function checkSign() {
+
+        // first loop
+
+        let y = 0; // loop counter variable (horizontal iteration)
+
+        let sign_num = 0; // variable for counting cells in a row
+
+        let three_signs = ''; // variable to store three characters
+
+        let display_sign; // variable to recognize the displayed character
+
+        for (; y <= cell.length; y++) { // loop to iterate through cells horizontally
+      
+            if (sign_num === 3) { // checking whether the counter has reached the limit value of three
+
+                if (three_signs === '+++' || three_signs === 'ooo') { // checking for the presence of three identical characters in a row
+                                                                
+                    cell[y - 1].children[display_sign].classList.add('red'); // highlighting three identical characters in a row in red
+
+                    cell[y - 2].children[display_sign].classList.add('red');
+
+                    cell[y - 3].children[display_sign].classList.add('red');
+            
+                    alert(`Победил ${cell[y - 1].children[display_sign].innerHTML}`); // announcement of the winning sign
+
+                    showSubstrate();
+
+                    break;
+
+                }
+
+                else {
+
+                    three_signs = ''; // resetting a variable that stores the contents of cells in a row to zero
+
+                    sign_num = 0; // resetting the cell counter in a row to zero
+
+                }
+
+            }
+
+            if (y != 9) {
+          
+                if (cell[y].children[0].classList.contains('show')) {
+
+                    three_signs += cell[y].children[0].innerHTML;
+
+                    display_sign = 0;
+
+                }
+
+                else if (cell[y].children[1].classList.contains('show')) {
+
+                    three_signs += cell[y].children[1].innerHTML;
+
+                    display_sign = 1;
+
+                }
+          
+            }
+        
+            sign_num++; // after the cell is calculated, the counter value is incremented
+
+        }
+
+
+        // second loop
+
+        let z = 0; // loop counter variable (vertical iteration)
+
+        let second_sign_num = 0;
+
+        let second_three_signs = '';
+
+        let display_sign_1; // variable to recognize the displayed character
+
+        for (; z < cell.length;) { // loop to iterate through cells vertically
+
+            if (second_sign_num === 3) { // checking whether the counter has reached the limit value of three
+  
+                if (second_three_signs === '+++' || second_three_signs === 'ooo') { // checking for the presence of three identical characters in a row
+                                            
+                    cell[z + 5].children[display_sign_1].classList.add('red'); // highlighting three identical characters in a row in red
+              
+                    cell[z + 2].children[display_sign_1].classList.add('red');
+              
+                    cell[z + (-1)].children[display_sign_1].classList.add('red');
+
+                    alert(`Победил ${cell[z + 5].children[display_sign_1].innerHTML}`); // announcement of the winning sign
+                    
+                    showSubstrate();
+
+                    break;
+              
+                }
+  
+                else {
+
+                    second_three_signs = ''; // resetting a variable that stores the contents of cells in a row to zero
+  
+                    second_sign_num = 0; // Resetting the cell counter in a row to zero
+                }
+          
+            }
       
             if (cell[z].children[0].classList.contains('show')) {
   
-              second_three_signs += cell[z].children[0].innerHTML;
+                second_three_signs += cell[z].children[0].innerHTML;
   
-              display_sign_1 = 0;
+                display_sign_1 = 0;
 
             }
   
             else if (cell[z].children[1].classList.contains('show')) {
   
-              second_three_signs += cell[z].children[1].innerHTML;
+                second_three_signs += cell[z].children[1].innerHTML;
   
-              display_sign_1 = 1;
+                display_sign_1 = 1;
 
             }
 
-          second_sign_num++; // После вычисления ячейки значение счетчика увеличивается
+            second_sign_num++; // after the cell is calculated, the counter value is incremented
 
-          if (second_sign_num === 3) {
+            if (second_sign_num === 3) {
             
-            z -= 5;
+                z -= 5;
 
-          }
+            }
 
-          else {
+            else {
             
-            z += 3;
+                z += 3;
 
-          }
+            }
 
-      }
+        }
 
 
-        let x = 0; // Переменная счетчика цикла (перебор по диагонали)
+        // third loop
+
+        let x = 0; // loop counter variable (diagonal iteration)
 
         let third_sign_num = 0;
 
@@ -224,96 +312,104 @@ window.onload = function () {
 
         let row_count = 1;
 
-        let display_sign_2; // Переменная для распознавания отображаемого знака
+        let display_sign_2; // variable to recognize the displayed character
 
         for (; x <= cell.length;) {
 
-          if (third_sign_num === 3) { // Проверка достижения счетчиком предельного значения равного трем
+            if (third_sign_num === 3) { // checking whether the counter has reached the limit value of three
   
-            row_count++;
+                row_count++;
 
-            if (third_three_signs === '+++' || third_three_signs === 'ooo') { // Проверка на наличие трех одинаковых знаков подряд
+                if (third_three_signs === '+++' || third_three_signs === 'ooo') { // checking for the presence of three identical characters in a row
               
-              if (row_count !== 3) {
+                    if (row_count !== 3) {
 
-                cell[x + 6].children[display_sign_2].classList.add('red'); // Выделение трех одинаковых знаков в ряд красным цветом
+                        cell[x + 6].children[display_sign_2].classList.add('red'); // highlighting three identical characters in a row in red
             
-                cell[x + 2].children[display_sign_2].classList.add('red');
+                        cell[x + 2].children[display_sign_2].classList.add('red');
             
-                cell[x + (-2)].children[display_sign_2].classList.add('red');
+                        cell[x + (-2)].children[display_sign_2].classList.add('red');
             
-                alert(`Победил ${this.children[display_sign_2].innerHTML}`); // Объявление победившего знака
+                        alert(`Победил ${cell[x + 6].children[display_sign_2].innerHTML}`); // announcement of the winning sign
 
-              }
+                        showSubstrate();
 
-              else {
+                        break;
+                        
+                    }
 
-                cell[x - 2].children[display_sign_2].classList.add('red'); // Выделение трех одинаковых знаков в ряд красным цветом
+                    else {
+
+                        cell[x - 2].children[display_sign_2].classList.add('red'); // highlighting three identical characters in a row in red
             
-                cell[x - 4].children[display_sign_2].classList.add('red');
+                        cell[x - 4].children[display_sign_2].classList.add('red');
 
-                cell[x - 6].children[display_sign_2].classList.add('red');
+                        cell[x - 6].children[display_sign_2].classList.add('red');
 
-                alert(`Победил ${this.children[display_sign_2].innerHTML}`); // Объявление победившего знака
+                        alert(`Победил ${cell[x - 2].children[display_sign_2].innerHTML}`); // announcement of the winning sign
 
-              }
+                        showSubstrate();
+
+                        break;
+
+                    }
+
+                }
+
+                else {
+
+                    third_three_signs = ''; // resetting a variable that stores the contents of cells in a row to zero
+
+                    third_sign_num = 0; // resetting the cell counter in a row to zero
+
+                }
 
             }
 
-            third_three_signs = ''; // Обнуление переменной, хранящей содержимое ячеек в ряду
-
-            third_sign_num = 0; // Обнуление счетчика ячеек в ряду
-
-          }
-
-          if (cell[x].children[0].classList.contains('show')) {
+            if (cell[x].children[0].classList.contains('show')) {
   
-            third_three_signs += cell[x].children[0].innerHTML;
+                third_three_signs += cell[x].children[0].innerHTML;
 
-            display_sign_2 = 0;
+                display_sign_2 = 0;
 
-          }
+            }
 
-          else if (cell[x].children[1].classList.contains('show')) {
+            else if (cell[x].children[1].classList.contains('show')) {
 
-            third_three_signs += cell[x].children[1].innerHTML;
+                third_three_signs += cell[x].children[1].innerHTML;
 
-            display_sign_2 = 1;
+                display_sign_2 = 1;
 
-          }
+            }
 
-          if (x % 4 === 0 && x != 8 && row_count === 1) {
+            if (x % 4 === 0 && x != 8 && row_count === 1) {
 
-            x += 4;
+                x += 4;
 
-          }
+            }
 
-          else if (x === 8 && row_count != 3) {
+            else if (x === 8 && row_count != 3) {
 
-            x = 2;
+                x = 2;
 
-          }
+            }
 
-          else if (row_count === 3) {
+            else if (row_count === 3) {
 
-            break;
+                break;
 
-          }
+            }
 
-          else {
+            else {
 
-            x += 2;
+                x += 2;
 
-          }
+            }
 
-        third_sign_num++;
+            third_sign_num++;
 
         }
 
-      //ПРОВЕРКА НАЛИЧИЯ ТРЕХ ОДИНАКОВЫХ ЗНАКОВ В РЯД
-
     }
-
-  }
 
 }

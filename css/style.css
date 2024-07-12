@@ -11,11 +11,11 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
-html {
+/* html {
   color: #222;
   font-size: 1em;
   line-height: 1.4;
-}
+} */
 
 /*
  * Remove text-shadow in selection highlight:
@@ -24,7 +24,7 @@ html {
  * Customize the background color to match your design.
  */
 
-::-moz-selection {
+/* ::-moz-selection {
   background: #b3d4fc;
   text-shadow: none;
 }
@@ -32,20 +32,20 @@ html {
 ::selection {
   background: #b3d4fc;
   text-shadow: none;
-}
+} */
 
 /*
  * A better looking default horizontal rule
  */
 
-hr {
+/* hr {
   display: block;
   height: 1px;
   border: 0;
   border-top: 1px solid #ccc;
   margin: 1em 0;
   padding: 0;
-}
+} */
 
 /*
  * Remove the gap between audio, canvas, iframes,
@@ -53,32 +53,32 @@ hr {
  * https://github.com/h5bp/html5-boilerplate/issues/440
  */
 
-audio,
+/* audio,
 canvas,
 iframe,
 img,
 svg,
 video {
   vertical-align: middle;
-}
+} */
 
 /*
  * Remove default fieldset styles.
  */
 
-fieldset {
+/* fieldset {
   border: 0;
   margin: 0;
   padding: 0;
-}
+} */
 
 /*
  * Allow only vertical resizing of textareas.
  */
 
-textarea {
+/* textarea {
   resize: vertical;
-}
+} */
 
 /* ==========================================================================
    Author's custom styles
@@ -92,10 +92,10 @@ textarea {
  * Hide visually and from screen readers
  */
 
-.hidden,
+/* .hidden,
 [hidden] {
   display: none !important;
-}
+} */
 
 /*
  * Hide only visually, but have it available for screen readers:
@@ -106,7 +106,7 @@ textarea {
  *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
  */
 
-.visually-hidden {
+/* .visually-hidden {
   border: 0;
   clip: rect(0, 0, 0, 0);
   height: 1px;
@@ -117,7 +117,7 @@ textarea {
   white-space: nowrap;
   width: 1px;
   /* 1 */
-}
+/* }  */
 
 /*
  * Extends the .visually-hidden class to allow the element
@@ -125,7 +125,7 @@ textarea {
  * https://www.drupal.org/node/897638
  */
 
-.visually-hidden.focusable:active,
+/* .visually-hidden.focusable:active,
 .visually-hidden.focusable:focus {
   clip: auto;
   height: auto;
@@ -134,15 +134,15 @@ textarea {
   position: static;
   white-space: inherit;
   width: auto;
-}
+} */
 
 /*
  * Hide visually and from screen readers, but maintain layout
  */
 
-.invisible {
+/* .invisible {
   visibility: hidden;
-}
+} */
 
 /*
  * Clearfix: contain floats
@@ -151,7 +151,7 @@ textarea {
  * `::before` to contain the top-margins of child elements.
  */
 
-.clearfix::before,
+/* .clearfix::before,
 .clearfix::after {
   content: "";
   display: table;
@@ -159,7 +159,7 @@ textarea {
 
 .clearfix::after {
   clear: both;
-}
+} */
 
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
@@ -167,16 +167,16 @@ textarea {
    Modify as content requires.
    ========================================================================== */
 
-@media only screen and (min-width: 35em) {
+/* @media only screen and (min-width: 35em) { */
   /* Style adjustments for viewports that meet the condition */
-}
+/* } */
 
-@media print,
+/* @media print,
   (-webkit-min-device-pixel-ratio: 1.25),
   (min-resolution: 1.25dppx),
-  (min-resolution: 120dpi) {
+  (min-resolution: 120dpi) { */
   /* Style adjustments for high resolution devices */
-}
+/* } */
 
 /* ==========================================================================
    Print styles.
@@ -184,18 +184,18 @@ textarea {
    https://www.phpied.com/delay-loading-your-print-css/
    ========================================================================== */
 
-@media print {
+/* @media print {
   *,
   *::before,
   *::after {
     background: #fff !important;
     color: #000 !important;
     /* Black prints faster */
-    box-shadow: none !important;
-    text-shadow: none !important;
-  }
+    /* box-shadow: none !important; */
+    /* text-shadow: none !important; */
+  /* }  */
 
-  a,
+  /* a,
   a:visited {
     text-decoration: underline;
   }
@@ -206,13 +206,13 @@ textarea {
 
   abbr[title]::after {
     content: " (" attr(title) ")";
-  }
+  } */
 
   /*
    * Don't show links that are fragment identifiers,
    * or use the `javascript:` pseudo protocol
    */
-  a[href^="#"]::after,
+  /* a[href^="#"]::after,
   a[href^="javascript:"]::after {
     content: "";
   }
@@ -225,9 +225,9 @@ textarea {
   blockquote {
     border: 1px solid #999;
     page-break-inside: avoid;
-  }
+  } */
 
-  tr,
+  /* tr,
   img {
     page-break-inside: avoid;
   }
@@ -243,12 +243,13 @@ textarea {
   h3 {
     page-break-after: avoid;
   }
-}
-
+} */
 
 /*Стили игры*/
+
 p {
-  font-size: xx-large;
+  margin-top: 20px;
+  font-size: large;
   font-weight: bolder;
   text-align: center;
 }
@@ -276,7 +277,7 @@ p {
   height: 132px;
 }
 
-.field .level .cell p { /* */
+.field .level .cell p {
   display: none;
 }
 
@@ -290,19 +291,6 @@ p {
   color: red;
 }
 
-/* .field .level .cell .cross {
-  display: none;
-}
-
-.field .level .cell .zero {
-  display: none;
-} */
-
-
-/* .choosing {
-
-} */
-
 /*Стили для блока выбора кнопки*/
 
 .choosing .buttons_title {
@@ -313,12 +301,19 @@ p {
   text-align: center;
 }
 
-/* sizes_tesr */
+/* Стили для подложки */
 
-.sizes_test {
-  margin: 0;
-  width: 134px;
-  height: 132px;
-  outline: 1px solid black;
-  column-width: 50px;
+.substrate {
+  display: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: #e3dada;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.show_substrate {
+  display: block;
 }

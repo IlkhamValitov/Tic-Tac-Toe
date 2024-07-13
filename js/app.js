@@ -13,6 +13,27 @@ window.onload = function() {
     let selected_sign; // stores the selected character 
 
 
+    function checkCells() {
+
+        let sC = 0;
+
+        for (let cC = 0; cC < cell.length; cC++) {
+
+            if (!((cell[cC].children[sC].classList.contains('show')) || (cell[cC].children[sC + 1].classList.contains('show')))) {
+                
+                return;
+
+            }
+
+        }
+        
+        showSubstrate();
+
+        return;
+
+    }
+
+
     function showSubstrate() {  // function to show background to avoid unwanted clicks
 
         substrate.classList.add('show_substrate');
@@ -23,11 +44,11 @@ window.onload = function() {
 
     }
 
-    
-    function askQuestion() { // asked after finishing the game
+
+    function askQuestion() { // asked after finishing the game 
 
         if (confirm('Желаете сыграть еще?')) {
-
+            
             clearData();
 
             return;
@@ -46,10 +67,10 @@ window.onload = function() {
 
 
     function clearData() { // function to clear data after one of the players wins
+        
+        for (let cell_count = 0; cell_count < cell.length; cell_count++) {
 
-        for(let cell_count = 0; cell_count < cell.length; cell_count++) {
-
-            for(let sign_count = 0; sign_count < cell[0].children.length; sign_count++) {
+            for (let sign_count = 0; sign_count < cell[0].children.length; sign_count++) {
 
                 cell[cell_count].children[sign_count].classList.remove('show');
 
@@ -149,7 +170,7 @@ window.onload = function() {
 
                     else {
 
-                        alert('Выберите знак!'); // If you try to click on one of the cells
+                        alert('Выберите знак!'); // if you try to click on one of the cells
                                                  // without first selecting a sign,
                                                  // the corresponding requirement will be displayed
                     }
@@ -265,6 +286,7 @@ window.onload = function() {
                     second_three_signs = ''; // resetting a variable that stores the contents of cells in a row to zero
   
                     second_sign_num = 0; // Resetting the cell counter in a row to zero
+
                 }
           
             }
@@ -395,6 +417,10 @@ window.onload = function() {
             }
 
             else if (row_count === 3) {
+
+                checkCells(); // call a function that performs the check. 
+                              // If all the cells of the field are filled, 
+                              // a question appears about starting the game again
 
                 break;
 
